@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const { db } = require("../utils/db");
@@ -5,19 +6,19 @@ const { db } = require("../utils/db");
 exports.login = function (req, res) {
   const { email, password } = req.body;
 
-  db.query("SELECT * FROM student WHERE s_email = ?", [email], (err, rows) => {
+  db.query("SELECT * FROM student WHERE s_email = ?", [email], (err, data) => {
     if (err) {
       res.status(500).json({
         success: false,
         message: "Something went wrong!",
       });
-    } else if (rows.length === 0) {
+    } else if (data.length === 0) {
       res.status(401).json({
         success: false,
         message: "User not found!",
       });
     } else {
-      const user = rows[0];
+      const user = data[0];
       bcrypt.compare(password, user.s_password, (err, result) => {
         if (err) {
           res.status(500).json({
@@ -30,9 +31,21 @@ exports.login = function (req, res) {
             message: "Incorrect Password!",
           });
         } else {
+          let accessToken = jwt.sign(
+            {
+              id: user.s_id,
+              email: user.s_email,
+            },
+            process.env.JWT_SECRET,
+            {
+              expiresIn: "1d",
+            }
+          );
+
           res.status(200).json({
             success: true,
             message: "Logged in successfully!",
+            user: { name: user.s_name, email: user.s_email, accessToken },
           });
         }
       });
