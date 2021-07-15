@@ -1,8 +1,8 @@
 const mysql = require("mysql");
 
 exports.db = mysql.createConnection({
-  host: "localhost",
-  user: "gamention",
-  password: "aa123456",
-  database: "student_greivance_system",
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASS,
+  database: process.env.DATABASE_DB,
 });
