@@ -1,0 +1,33 @@
+.modifiedNav {
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 1.1em;
+}
+
+.registerButton {
+  background-color: #f38f2b;
+  border: 1px solid #fff;
+  color: #fff !important;
+  transition: all 0.1s ease-in;
+}
+
+.registerButton:hover {
+  background-color: #fff;
+  border: 1px solid #f38f2b;
+  color: #f38f2b !important;
+}
+
+.registerButton.active {
+  color: #fff !important;
+}
+
+.navLinks:hover {
+  color: #f38f2b !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .registerButton {
+    width: 100px;
+    text-align: center;
+  }
+}
