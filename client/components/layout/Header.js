@@ -59,12 +59,10 @@ const Header = () => {
             draggable: true,
             progress: undefined,
           });
-          if (typeof window !== "undefined") {
-            localStorage.setItem("isLoggedIn", "true");
-          }
-          setTimeout(() => {
-            window.location.href = "/student/dashboard";
-          }, 2000);
+          console.log(data);
+          // setTimeout(() => {
+          //   window.location.href = "/student/dashboard";
+          // }, 1000);
         } else {
           toast.error(data.message, {
             position: "bottom-center",
@@ -84,10 +82,10 @@ const Header = () => {
   };
 
   const handleLogout = (e) => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("isLoggedIn", "false");
-    }
-    window.location.href = "/";
+    // if (typeof window !== "undefined") {
+    //   window.sessionStorage.setItem("isLoggedIn", "false");
+    // }
+    // window.location.href = "/";
   };
 
   return (
@@ -119,8 +117,8 @@ const Header = () => {
               </Nav.Link>
             </Link>
 
-            <Link href="/new-grievance" className={classes.navLinks}>
-              <Nav.Link href="/new-grievance">Lodge a grievance</Nav.Link>
+            <Link href="/student/new-grievance" className={classes.navLinks}>
+              <Nav.Link href="/student/new-grievance">Lodge a grievance</Nav.Link>
             </Link>
 
             <Link href="/previous-grievance" className={classes.navLinks}>

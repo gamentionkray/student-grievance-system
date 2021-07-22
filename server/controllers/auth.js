@@ -41,11 +41,15 @@ exports.login = function (req, res) {
               expiresIn: "1d",
             }
           );
+          
+          if (typeof window !== "undefined") {
+            window.sessionStorage.setItem('sgs_token', accessToken);
+          }
 
           res.status(200).json({
             success: true,
             message: "Logged in successfully!",
-            user: { name: user.s_name, email: user.s_email, accessToken },
+            accessToken,
           });
         }
       });
