@@ -60,6 +60,9 @@ const Header = () => {
             progress: undefined,
           });
           console.log(data);
+          if (typeof window !== "undefined") {
+            window.sessionStorage.setItem("sgs_token", data.accessToken);
+          }
           // setTimeout(() => {
           //   window.location.href = "/student/dashboard";
           // }, 1000);
@@ -118,7 +121,9 @@ const Header = () => {
             </Link>
 
             <Link href="/student/new-grievance" className={classes.navLinks}>
-              <Nav.Link href="/student/new-grievance">Lodge a grievance</Nav.Link>
+              <Nav.Link href="/student/new-grievance">
+                Lodge a grievance
+              </Nav.Link>
             </Link>
 
             <Link href="/previous-grievance" className={classes.navLinks}>

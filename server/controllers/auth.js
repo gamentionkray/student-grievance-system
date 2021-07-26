@@ -34,17 +34,12 @@ exports.login = function (req, res) {
           let accessToken = jwt.sign(
             {
               id: user.s_id,
-              email: user.s_email,
             },
             process.env.JWT_SECRET,
             {
               expiresIn: "1d",
             }
           );
-          
-          if (typeof window !== "undefined") {
-            window.sessionStorage.setItem('sgs_token', accessToken);
-          }
 
           res.status(200).json({
             success: true,

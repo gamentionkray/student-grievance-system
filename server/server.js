@@ -16,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/misc", require("./routes/misc"));
 app.use("/api/grievances", require("./routes/grievances"));
 
 const port = process.env.PORT || 3001;
